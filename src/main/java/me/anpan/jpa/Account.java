@@ -1,19 +1,29 @@
 package me.anpan.jpa;
 
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@Entity
+@Entity(name = "Accounts")
+@Table(name = "Accountss")
 public class Account {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false,unique = true)
     private String username;
 
     private String password;
+
+    @Temporal(TemporalType.DATE)
+    private Date created = new Date();
 
     public Long getId() {
         return id;
@@ -37,5 +47,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }
